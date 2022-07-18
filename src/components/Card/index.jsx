@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import AppContext from '../context'
 import styles from './Card.module.sass'
 
@@ -26,7 +26,15 @@ const Card = ({ displayItem, onChangeCart, onChangeFavorite }) => {
           <div className='d-flex justify-between  align-center'>
             <div className='d-flex flex-column'>
               <span>Цена:</span>
-              <b>{displayItem.price} руб.</b>
+              <b>
+                {`${displayItem.price}`
+                  .split('')
+                  .reverse()
+                  .map((el, index) => (index % 3 !== 2 ? el : ` ${el}`))
+                  .reverse()
+                  .join('') + ' '}
+                руб.
+              </b>
             </div>
             <img
               className={styles.plus}

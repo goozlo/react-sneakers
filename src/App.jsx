@@ -13,6 +13,9 @@ function App() {
   const [favorites, setFavorites] = useState([])
   const [cartOpened, setCartOpened] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+
   const url = 'https://62d15e83dccad0cf176623b6.mockapi.io'
 
   useEffect(() => {
@@ -29,26 +32,28 @@ function App() {
   //Удаление из корзины и избранного
   //Добавление в корзину и избранное
 
-  function onChangeHandler(arr, endpoint, callback, obj) {
+  async function onChangeHandler(arr, endpoint, callback, obj) {
     const deletedItem = arr.find(item => item.itemId === obj.itemId)
-    if (deletedItem !== undefined) {
-      axios.delete(`${url}/${endpoint}/${deletedItem.id}`)
+    if (deletedItem) {
       callback(prev => prev.filter(item => item.itemId !== deletedItem.itemId))
+      await axios.delete(`${url}/${endpoint}/${deletedItem.id}`)
+      delay(1000)
     }
-    if (deletedItem === undefined) {
-      // callback(prev => [...prev, obj])
-      axios
-        .post(`${url}/${endpoint}`, obj)
-        .then(() => axios.get(`${url}/${endpoint}`))
-        .then(res => callback(res.data))
+    if (!deletedItem) {
+      callback(prev => [...prev, obj])
+      const { data } = await axios.post(`${url}/${endpoint}`, obj)
+      callback(prev => {
+        prev.pop()
+        return [...prev, data]
+      })
     }
   }
 
-  const onChangeCart = obj => {
+  const onChangeCart = async obj => {
     try {
-      onChangeHandler(cartItems, 'cart', setCartItems, obj)
+      await onChangeHandler(cartItems, 'cart', setCartItems, obj)
     } catch (error) {
-      alert('Не удалось добавить в корзину')
+      alert('Не удалось убрать айтем из корзины')
     }
   }
 
@@ -63,16 +68,18 @@ function App() {
   //------------------------------------------------------------
 
   return (
-    <AppContext.Provider value={{ items, cartItems, favorites }}>
+    <AppContext.Provider value={{ items, cartItems, setCartItems, favorites }}>
       <div className='wrapper clear'>
         {cartOpened && (
           <Drawer
             items={cartItems}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
             onCloseCart={() => setCartOpened(!cartOpened)}
             onChangeCart={onChangeCart}
           />
         )}
-        <Header onClickCart={() => setCartOpened(!cartOpened)} />
+        <Header cartItems={cartItems} onClickCart={() => setCartOpened(!cartOpened)} />
 
         <Routes>
           <Route
