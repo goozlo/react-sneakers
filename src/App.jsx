@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Favorites from './pages/Favorites'
 import Orders from './pages/Orders'
 import AppContext from './components/context'
+import Silder from './components/Slider'
 
 function App() {
   const [items, setItems] = useState([])
@@ -90,12 +91,15 @@ function App() {
           <Route
             path='/'
             element={
-              <Home
-                items={items}
-                onChangeCart={onChangeCart}
-                onChangeFavorite={onChangeFavorite}
-                isLoading={isLoading}
-              />
+              <>
+                <Silder />
+                <Home
+                  items={items}
+                  onChangeCart={onChangeCart}
+                  onChangeFavorite={onChangeFavorite}
+                  isLoading={isLoading}
+                />
+              </>
             }
           />
           <Route
