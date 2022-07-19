@@ -5,7 +5,6 @@ import Header from './components/Header'
 import Drawer from './components/Drawer'
 import Home from './pages/Home'
 import Favorites from './pages/Favorites'
-import Orders from './pages/Orders'
 import AppContext from './components/context'
 
 function App() {
@@ -22,14 +21,10 @@ function App() {
   useEffect(() => {
     // setIsLoading(true)
     async function fetchdata() {
-      try {
-        await axios.get(`${url}/cart`).then(res => setCartItems(res.data))
-        await axios.get(`${url}/favorites`).then(res => setFavorites(res.data))
-        await axios.get(`${url}/items`).then(res => setItems(res.data))
-        setIsLoading(false)
-      } catch (error) {
-        alert('Ошибка при запросе данных')
-      }
+      await axios.get(`${url}/cart`).then(res => setCartItems(res.data))
+      await axios.get(`${url}/favorites`).then(res => setFavorites(res.data))
+      await axios.get(`${url}/items`).then(res => setItems(res.data))
+      setIsLoading(false)
     }
     fetchdata()
   }, [])
@@ -64,7 +59,7 @@ function App() {
 
   const onChangeFavorite = async obj => {
     try {
-      await onChangeHandler(favorites, 'favorites', setFavorites, obj)
+      onChangeHandler(favorites, 'favorites', setFavorites, obj)
     } catch (error) {
       alert('Не удалось добавить в избранное')
     }
@@ -75,15 +70,15 @@ function App() {
   return (
     <AppContext.Provider value={{ items, cartItems, setCartItems, favorites }}>
       <div className='wrapper clear'>
-        <Drawer
-          items={cartItems}
-          cartItems={cartItems}
-          setCartItems={setCartItems}
-          onCloseCart={() => setCartOpened(!cartOpened)}
-          onChangeCart={onChangeCart}
-          cartOpened={cartOpened}
-        />
-
+        {cartOpened && (
+          <Drawer
+            items={cartItems}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+            onCloseCart={() => setCartOpened(!cartOpened)}
+            onChangeCart={onChangeCart}
+          />
+        )}
         <Header cartItems={cartItems} onClickCart={() => setCartOpened(!cartOpened)} />
 
         <Routes>
@@ -108,7 +103,6 @@ function App() {
               />
             }
           />
-          <Route path='/orders' element={<Orders />} />
         </Routes>
       </div>
     </AppContext.Provider>
