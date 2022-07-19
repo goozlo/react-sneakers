@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import AppContext from '../context'
 import styles from './Card.module.sass'
 
-const Card = ({ displayItem, onChangeCart = null, onChangeFavorite = null }) => {
+const Card = ({ displayItem, onChangeCart, onChangeFavorite }) => {
   const { cartItems, favorites } = useContext(AppContext)
 
   return (
@@ -10,18 +10,16 @@ const Card = ({ displayItem, onChangeCart = null, onChangeFavorite = null }) => 
       {
         <div className={styles.card}>
           <div className='favorite cu-p' onClick={() => onChangeFavorite(displayItem)}>
-            {onChangeCart && (
-              <img
-                width={32}
-                height={32}
-                src={
-                  favorites.some(item => item.itemId === displayItem.itemId)
-                    ? '/img/liked.svg'
-                    : '/img/unliked.svg'
-                }
-                alt='liked'
-              />
-            )}
+            <img
+              width={32}
+              height={32}
+              src={
+                favorites.some(item => item.itemId === displayItem.itemId)
+                  ? '/img/liked.svg'
+                  : '/img/unliked.svg'
+              }
+              alt='liked'
+            />
           </div>
           <img width={133} height={112} src={displayItem.imageUrl} alt='sneakers' />
           <h5>{displayItem.title}</h5>
@@ -38,20 +36,18 @@ const Card = ({ displayItem, onChangeCart = null, onChangeFavorite = null }) => 
                 руб.
               </b>
             </div>
-            {onChangeCart && (
-              <img
-                className={styles.plus}
-                onClick={() => onChangeCart(displayItem)}
-                width={32}
-                height={32}
-                src={
-                  cartItems.some(item => item.itemId === displayItem.itemId)
-                    ? '/img/btn-checked.svg'
-                    : '/img/btn-plus.svg'
-                }
-                alt='plus'
-              />
-            )}
+            <img
+              className={styles.plus}
+              onClick={() => onChangeCart(displayItem)}
+              width={32}
+              height={32}
+              src={
+                cartItems.some(item => item.itemId === displayItem.itemId)
+                  ? '/img/btn-checked.svg'
+                  : '/img/btn-plus.svg'
+              }
+              alt='plus'
+            />
           </div>
         </div>
       }
