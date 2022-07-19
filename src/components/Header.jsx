@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import TotalPriceCalc from '../hooks/TotalPticeCalc'
 
 const Header = props => {
   const totalPrice = props.cartItems.reduce((acc, item) => (acc += +item.price), 0)
@@ -18,15 +19,7 @@ const Header = props => {
         <ul className='d-flex'>
           <li className='mr-30 cu-p' onClick={props.onClickCart}>
             <img width={18} height={18} src='/img/cart.svg' alt='Корзина' />
-            <span>
-              {String(Math.round(totalPrice))
-                .split('')
-                .reverse()
-                .map((el, index) => (index % 3 !== 2 ? el : ` ${el}`))
-                .reverse()
-                .join('') + ' '}{' '}
-              руб.
-            </span>
+            <span>{TotalPriceCalc(totalPrice, 1)}</span>
           </li>
           <li className='mr-20 cu-p'>
             <Link to='/favorites'>
@@ -34,7 +27,7 @@ const Header = props => {
             </Link>
           </li>
           <li>
-            <Link to='/user'>
+            <Link to='/orders'>
               <img width={20} height={20} src='/img/user.svg' alt='Пользователь' />
             </Link>
           </li>
