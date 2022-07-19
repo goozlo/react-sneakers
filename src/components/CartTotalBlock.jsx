@@ -1,3 +1,5 @@
+import TotalPriceCalc from '../hooks/TotalPticeCalc'
+
 const CartTotalblock = ({ onGetOrder, totalPrice, isLoading }) => {
   return (
     <div className='cartTotalBlock'>
@@ -5,28 +7,12 @@ const CartTotalblock = ({ onGetOrder, totalPrice, isLoading }) => {
         <li>
           <span>Итого:</span>
           <div></div>
-          <b>
-            {String(Math.round(totalPrice * 1.02))
-              .split('')
-              .reverse()
-              .map((el, index) => (index % 3 !== 2 ? el : ` ${el}`))
-              .reverse()
-              .join('') + ' '}{' '}
-            руб.
-          </b>
+          <b>{TotalPriceCalc(totalPrice, 1.02)}</b>
         </li>
         <li>
           <span>Налог 5%:</span>
           <div></div>
-          <b>
-            {String(Math.round(totalPrice * 0.02))
-              .split('')
-              .reverse()
-              .map((el, index) => (index % 3 !== 2 ? el : ` ${el}`))
-              .reverse()
-              .join('') + ' '}{' '}
-            руб.
-          </b>
+          <b>{TotalPriceCalc(totalPrice, 0.02)}</b>
         </li>
       </ul>
       <button disabled={isLoading} className='greenButton' onClick={() => onGetOrder()}>
