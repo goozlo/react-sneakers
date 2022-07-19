@@ -4,7 +4,7 @@ import CartTotalblock from '../CartTotalBlock'
 import Info from '../Info'
 import styles from './Drawer.module.sass'
 
-const Drawer = ({ items = [], cartItems, setCartItems, onCloseCart, onChangeCart }) => {
+const Drawer = ({ items = [], cartItems, setCartItems, onCloseCart, onChangeCart, cartOpened }) => {
   const [orderId, setOrderId] = useState(null)
   const [isOrderComplete, setIsOrderComplete] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -35,7 +35,7 @@ const Drawer = ({ items = [], cartItems, setCartItems, onCloseCart, onChangeCart
   const totalPrice = cartItems.reduce((acc, item) => (acc += +item.price), 0)
 
   return (
-    <div className={styles.overlay}>
+    <div className={`${styles.overlay} ${cartOpened ? styles.overlayVisible : ''}`}>
       <div className={styles.drawer}>
         <h2 className='d-flex justify-between mb-30'>
           Корзина{' '}
