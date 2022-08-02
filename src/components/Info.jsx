@@ -1,7 +1,10 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../redux/store'
+import { toggleCart } from '../redux/toggleCart/slice'
 
-const Info = ({ onCloseCart, setIsOrderComplete = null, title, description, image }) => {
+const Info = ({ setIsOrderComplete = null, title, description, image }) => {
+  const dispatch = useAppDispatch()
+
   return (
     <div className='cartEmpty d-flex align-center justify-center flex-column flex'>
       <img className='mb-20' width={setIsOrderComplete ? 120 : 70} src={image} alt='Empty' />
@@ -10,8 +13,8 @@ const Info = ({ onCloseCart, setIsOrderComplete = null, title, description, imag
       <Link to='/'>
         <button
           onClick={() => {
+            dispatch(toggleCart())
             setIsOrderComplete(false)
-            onCloseCart()
           }}
           className='greenButton'
         >

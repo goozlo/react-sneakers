@@ -1,7 +1,11 @@
+import { useAppSelector } from '../redux/store'
+
 import Card from '../components/Card'
 import Info from '../components/Info'
 
-const Favorites = ({ favoriteItems, onChangeCart, onChangeFavorite }) => {
+const Favorites = () => {
+  const { favoriteItems } = useAppSelector(state => state.favorites)
+
   return (
     <div className='content p-40'>
       {!favoriteItems.length && (
@@ -21,12 +25,7 @@ const Favorites = ({ favoriteItems, onChangeCart, onChangeFavorite }) => {
           </div>
           <div className='d-flex flex-wrap'>
             {favoriteItems.map(item => (
-              <Card
-                key={item.itemId}
-                displayItem={item}
-                onChangeCart={onChangeCart}
-                onChangeFavorite={onChangeFavorite}
-              />
+              <Card key={item.id} displayItem={item} />
             ))}
           </div>
         </>

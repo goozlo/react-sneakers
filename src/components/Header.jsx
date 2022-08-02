@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
-import TotalPriceCalc from '../hooks/TotalPticeCalc'
+import { useAppSelector, useAppDispatch } from '../redux/store'
+import { toggleCart } from '../redux/toggleCart/slice'
+import calcTotalPrice from '../hooks/calcTotalPrice'
 
-const Header = props => {
-  const totalPrice = props.cartItems.reduce((acc, item) => (acc += +item.price), 0)
+const Header = () => {
+  const dispatch = useAppDispatch()
+  const { totalPrice } = useAppSelector(state => state.cart)
 
   return (
     <header className='d-flex justify-between align-center p-40'>
@@ -17,9 +20,9 @@ const Header = props => {
       </Link>
       <div>
         <ul className='d-flex'>
-          <li className='mr-30 cu-p' onClick={props.onClickCart}>
+          <li className='mr-30 cu-p' onClick={() => dispatch(toggleCart())}>
             <img width={18} height={18} src='/img/cart.svg' alt='Корзина' />
-            <span>{TotalPriceCalc(totalPrice, 1)}</span>
+            <span>{calcTotalPrice(totalPrice)}</span>
           </li>
           <li className='mr-20 cu-p'>
             <Link to='/favorites'>

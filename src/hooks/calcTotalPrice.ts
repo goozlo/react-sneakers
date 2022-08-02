@@ -1,5 +1,5 @@
-const TotalPriceCalc = (number, per) => {
-  const total = String(Math.round(number * per))
+const calcTotalPrice = (number: number): string => {
+  const total = String(Math.round(number))
     .split('')
     .reverse()
     .map((el, index) => (index % 3 !== 2 ? el : ` ${el}`))
@@ -9,4 +9,4 @@ const TotalPriceCalc = (number, per) => {
   return total + ' руб.'
 }
 
-export default TotalPriceCalc
+export default calcTotalPrice
