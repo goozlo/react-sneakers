@@ -10,8 +10,6 @@ const Favorites = () => {
     <div className='content p-40'>
       {!favoriteItems.length && (
         <Info
-          onCloseCart={null}
-          setIsOrderComplete={null}
           title={'Закладок нет :('}
           description={'Вы ничего не добавляли в закладки'}
           image={'/img/sad-smile.png'}

@@ -1,16 +1,13 @@
 import ContentLoader from 'react-content-loader'
-import styles from './Card'
 
-const MyLoader = props => (
+const MyLoader: React.FC = () => (
   <ContentLoader
-    className={styles.contentLoader}
     speed={2}
     width={250}
     height={326}
     viewBox='0 0 220 326'
     backgroundColor='#f2f2f2'
     foregroundColor='#f5f5f5'
-    {...props}
   >
     <rect x='10' y='80' rx='10' ry='10' width='168' height='90' />
     <rect x='10' y='204' rx='3' ry='3' width='168' height='15' />

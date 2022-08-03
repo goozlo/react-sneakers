@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import styles from './Slider.module.sass'
 
-const Silder = props => {
-  const sliders = [
-    { src: `/img/slider.jpg`, alt: 'kermit' },
-    { src: `/img/slider2.jpg`, alt: 'kermit' },
-    { src: `/img/slider3.jpg`, alt: 'kermit' },
-  ]
+const sliders = [
+  { src: `/img/slider.jpg`, alt: 'kermit' },
+  { src: `/img/slider2.jpg`, alt: 'kermit' },
+  { src: `/img/slider3.jpg`, alt: 'kermit' },
+]
+
+const Silder: React.FC = () => {
   const [offset, setOffset] = useState(0)
 
   const next = () => {

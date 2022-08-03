@@ -1,6 +1,12 @@
 import { ICartItem } from '../cart/types'
 
-export interface IOrderState {
-  orderItems: (ICartItem | number)[]
+interface IOrderItems {
   id: number
+  items: [ICartItem[]]
+}
+
+export interface IOrderState {
+  orderItems: IOrderItems[]
+  id: number
+  isCompleted: Boolean
 }

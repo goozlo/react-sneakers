@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from '../redux/store'
-import { getOrder } from '../redux/order/slice'
-import calcTotalPrice from '../hooks/calcTotalPrice'
-import { clearCart } from '../redux/cart/slice'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { getOrder } from '../../redux/order/slice'
+import { clearCart } from '../../redux/cart/slice'
+import calcTotalPrice from '../../hooks/calcTotalPrice'
 
-const CartTotalblock = () => {
+const CartTotalblock: React.FC = () => {
   const dispatch = useAppDispatch()
   const { cartItems, totalPrice } = useAppSelector(state => state.cart)
 

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { useAppSelector, useAppDispatch } from '../redux/store'
-import { toggleCart } from '../redux/toggleCart/slice'
-import calcTotalPrice from '../hooks/calcTotalPrice'
+import { useAppSelector, useAppDispatch } from '../../redux/store'
+import { toggleCart } from '../../redux/toggleCart/slice'
+import calcTotalPrice from '../../hooks/calcTotalPrice'
 
-const Header = () => {
+const Header: React.FC = () => {
   const dispatch = useAppDispatch()
   const { totalPrice } = useAppSelector(state => state.cart)
 

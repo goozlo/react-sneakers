@@ -3,7 +3,8 @@ import { IOrderState } from './types'
 
 const initialState: IOrderState = {
   orderItems: [],
-  id: 0,
+  id: 1,
+  isCompleted: false,
 }
 
 const orderSlicer = createSlice({
@@ -11,8 +12,11 @@ const orderSlicer = createSlice({
   initialState,
   reducers: {
     getOrder(state, action) {
-      ++state.id
-      state.orderItems.push({ ...action.payload, id: state.id })
+      if (!state.isCompleted) {
+        ++state.id
+        state.orderItems.push({ ...action.payload, id: state.id })
+      }
+      state.isCompleted = !state.isCompleted
     },
   },
 })
