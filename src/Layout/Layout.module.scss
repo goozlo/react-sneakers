@@ -1,0 +1,21 @@
+.layout {
+	display: grid;
+	grid-template-columns: minmax(10px, 1fr) 1080px minmax(10px, 1fr);
+	grid-template-rows: 128px 1fr;
+	min-height: 100vh;
+	grid-template-areas:
+	" . header . "
+	" .  main  . ";
+	margin-top: 85px;
+}
+
+.header {
+	grid-area: header;
+	position: sticky;
+	top: 0;
+}
+
+.main {
+	grid-area: main;
+}
+

@@ -1,0 +1,14 @@
+@import "./src/styles/variables";
+
+.home {
+	padding: $padding;
+	border-radius: 0 0 $radius $radius;
+	background: $white;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
