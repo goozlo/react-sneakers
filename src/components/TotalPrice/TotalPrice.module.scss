@@ -1,0 +1,21 @@
+@import "./src/styles/variables";
+@import "./src/styles/mixins";
+
+.wrapper {
+	display: flex;
+	padding: 10px 0;
+}
+
+.about {
+	white-space: nowrap;
+}
+
+.dashed {
+	border-bottom: 1px dashed $gray;
+	width: 100%;
+}
+
+.price_currency {
+	white-space: nowrap;
+	@include price
+}

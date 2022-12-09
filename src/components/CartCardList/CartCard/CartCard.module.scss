@@ -1,0 +1,22 @@
+@import "./src/styles/variables";
+@import "./src/styles/mixins";
+
+.card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 120px;
+	padding: 30px;
+	border: 1px solid $gray;
+	border-radius: $radius;
+	cursor: pointer;
+	@include transition-fast("transform, border-color");
+
+	&:active {
+		transform: $scale;
+	}
+}
+
+.price_currency {
+	@include price
+}

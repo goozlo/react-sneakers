@@ -12,6 +12,12 @@
 	padding: 30px;
 	border: 1px solid $gray;
 	border-radius: $radius;
+	cursor: pointer;
+	@include transition-fast("transform, border-color");
+
+	&:active {
+		transform: $scale;
+	}
 }
 
 .wrapper {
@@ -34,7 +40,7 @@
 }
 
 .price_currency {
-	@include Price
+	@include price
 }
 
 .liked {
@@ -42,6 +48,7 @@
 	top: 30px;
 	left: 30px;
 	cursor: pointer;
+	@include transition-fast("transform, border-color");
 }
 
 .checkbox {

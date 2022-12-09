@@ -1,4 +1,5 @@
 @import "./src/styles/variables";
+@import "./src/styles/mixins";
 
 .header {
 	display: flex;
@@ -11,17 +12,35 @@
 	border-bottom: 1px solid $gray;
 }
 
-.icon {
-	cursor: pointer
-}
-
 .account {
-	& > .icon {
-		margin-right: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 
-		&:last-child {
-			margin-right: 0;
-		}
+	.link {
+		margin-right: 20px;
 	}
 }
 
+.link {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 100%;
+	transition: background $duration-average ease-in-out,
+	transform $duration-fast ease-in-out;
+
+	&:active {
+		transform: scale(.95);
+	}
+}
+
+.link.active {
+	background: rgba(0, 0, 0, 0.2);
+
+	svg {
+		fill: $white;
+	}
+}

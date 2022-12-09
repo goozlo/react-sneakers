@@ -1,7 +1,7 @@
 import React from "react"
 import { getItems } from "../../hooks"
-import { Card } from "../Card/Card"
-import { CardProps } from "../Card/Card.props"
+import { Card } from "./Card/Card"
+import { CardProps } from "./Card/Card.props"
 import style from "./CardList.module.scss"
 
 export const CardList = () => {

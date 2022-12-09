@@ -6,8 +6,8 @@ import Search from "./Search.svg"
 export const Input: FC<InputProps> = ({ ...props }) => {
     return (
         <div className={style.inputDecorator}>
-            <Search className={style.icon}/>
             <input className={style.input}  {...props}/>
+            <Search className={style.icon}/>
         </div>
     )
 }

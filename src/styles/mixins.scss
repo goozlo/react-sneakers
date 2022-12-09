@@ -1,9 +1,21 @@
 @import "variables";
 
-@mixin Price {
+@mixin price {
 	font-style: normal;
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 17px;
 	color: $black;
+}
+
+@mixin transition-average($property) {
+	transition-property: $property;
+	transition-duration: $duration-average;
+	transition-timing-function: ease-in-out;
+}
+
+@mixin transition-fast($property) {
+	transition-property: $property;
+	transition-duration: $duration-fast;
+	transition-timing-function: ease-in-out;
 }

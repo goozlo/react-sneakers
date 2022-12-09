@@ -1,5 +1,5 @@
-import { Title, Checkbox, Liked } from ".."
-import { getPrice } from "../../utils"
+import { Title, Checkbox, Liked } from "../.."
+import { getPrice } from "../../../utils"
 import style from "./Card.module.scss"
 import { FC } from "react"
 import { CardProps } from "./Card.props"
