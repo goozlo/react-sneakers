@@ -28,3 +28,18 @@
 .total {
 	padding-top: 40px;
 }
+
+.cards {
+	overflow: hidden;
+	overflow-y: auto;
+	height: 100%;
+}
+
+.card {
+	margin-bottom: 10px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+

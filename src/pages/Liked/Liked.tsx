@@ -1,4 +1,4 @@
-import { Title, CardList } from "../../components"
+import { Title, Card } from "../../components"
 import style from "./Liked.module.scss"
 
 export const Liked = () => {
@@ -7,7 +7,7 @@ export const Liked = () => {
             <div className={style.wrapper}>
                 <Title size="main" children="Мои закладки"/>
             </div>
-            <CardList/>
+            {/*<CardList/>*/}
         </>
     )
 }

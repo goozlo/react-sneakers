@@ -1,4 +1,4 @@
-import { Title, CardList } from "../../components"
+import { Title, Card } from "../../components"
 import style from "./Bought.module.scss"
 
 export const Bought = () => {
@@ -7,7 +7,7 @@ export const Bought = () => {
             <div className={style.wrapper}>
                 <Title size="main" children="Мои покупки"/>
             </div>
-            <CardList/>
+            {/*<CardList/>*/}
         </>
     )
 }

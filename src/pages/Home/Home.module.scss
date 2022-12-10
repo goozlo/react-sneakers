@@ -7,3 +7,15 @@
 	width: 100%;
 	margin-bottom: 40px;
 }
+
+.cards {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	justify-items: center;
+	row-gap: 20px;
+}
+
+.card {
+	display: flex;
+	justify-content: center;
+}

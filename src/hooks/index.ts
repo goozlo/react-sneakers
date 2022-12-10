@@ -1,1 +1,1 @@
-export { getItems } from "./getItems"
+export { productsApi } from "./productsApi"
