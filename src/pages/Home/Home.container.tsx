@@ -1,18 +1,17 @@
 import React from "react"
 import { Home } from "./Home"
-import { useAppDispatch } from "../../redux/store"
-import { useSelector } from "react-redux"
-import { fetchProducts, productSelector } from "../../redux"
-import { CardProps } from "../../components/Card/Card.props"
+import { useGetAllProductsQuery } from "../../redux/products/products"
+import { ICard } from "../../core/models/card.model"
 
 export const HomeContainer = () => {
-    const dispatch = useAppDispatch()
+    // todo
+    const { data, isError, isLoading } = useGetAllProductsQuery("react-sneakers")
 
-    React.useEffect(() => {
-        dispatch(fetchProducts())
-    }, [])
-
-    const cards: CardProps[] = useSelector(productSelector)
+    const cards = (data as ICard[])?.map(item => ({
+        ...item,
+        checked: false,
+        liked: false
+    })) || []
 
     return <Home cards={cards}/>
 }

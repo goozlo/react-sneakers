@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const productsApi = async (endpoint: string) => {
+export const fetchProducts = async (endpoint: string) => {
     try {
         const apiUrl = process.env.REACT_APP_DATA_URL as string
 

@@ -1,10 +1,20 @@
 import { Title, Checkbox, Liked } from ".."
-import { getPrice } from "../../utils"
+import { getPrice } from "../../core/utils"
 import style from "./Card.module.scss"
 import { FC } from "react"
 import { CardProps } from "./Card.props"
+import { cartService } from "../../redux/cart"
 
-export const Card: FC<CardProps> = ({ label, price, imageUrl, checked, liked }) => {
+export const Card: FC<CardProps> = (
+    {
+        _id,
+        label,
+        price,
+        imageUrl,
+        checked,
+        liked
+    }
+) => {
     return (
         <div className={style.card}>
             <img src={imageUrl} width={133} height={112} alt="picture of sneakers"/>
@@ -14,8 +24,8 @@ export const Card: FC<CardProps> = ({ label, price, imageUrl, checked, liked }) 
                     <span className={style.price}>Цена:</span>
                     <span className={style.price_currency}>{getPrice(price)}</span>
                 </div>
-                <Checkbox className={style.checkbox} checked={checked}/>
-                <Liked className={style.liked} liked={liked}/>
+                <Checkbox className={style.checkbox} checked={checked} onClick={() => cartService.add(_id)}/>
+                <Liked className={style.liked} liked={liked} onClick={() => {}}/>
             </div>
         </div>
     )

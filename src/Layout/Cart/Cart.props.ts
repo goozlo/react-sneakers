@@ -1,8 +1,8 @@
 import React, { Dispatch, MutableRefObject } from "react"
-import { CardProps } from "../../components/CardList/Card/Card.props"
+import { ICard } from "../../core/models/card.model"
 
 export interface CartProps {
-    cards: CardProps[]
+    cards: Omit<ICard, "checked" | "liked">[]
     total: number
     withTax: number
     overlayRef: MutableRefObject<null>,

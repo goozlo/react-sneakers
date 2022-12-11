@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { TotalPriceProps } from "./TotalPrice.props"
 import style from "./TotalPrice.module.scss"
-import { getPrice } from "../../utils"
+import { getPrice } from "../../core/utils"
 import cn from "classnames"
 
 export const TotalPrice: FC<TotalPriceProps> = ({ about, price, className, ...props }) => {

@@ -1,38 +1,14 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { initialState } from "./products.state"
-import { AppThunk, RootState } from "../store"
-import { CardProps } from "../../components/CardList/Card/Card.props"
-import { productsApi } from "../../hooks"
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { ICard } from "../../core/models/card.model"
 
-export const fetchProducts = createAsyncThunk<AppThunk>(
-    "products",
-    async (arg, thunkAPI) => {
-        return await productsApi("react-sneakers")
+export const productsApi = createApi({
+    reducerPath: "products",
+    baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_DATA_URL as string }),
+    endpoints: (builder) => ({
+        getAllProducts: builder.query<ICard[], string>({
+            query: (name) => name
+        })
     })
-
-const productSlice = createSlice({
-    name: "product",
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(fetchProducts.pending, (state) => {
-            state.loading = true
-        })
-        builder.addCase(fetchProducts.fulfilled, (state, action) => {
-            // @ts-ignore todo
-            state.products = (action.payload as unknown as CardProps[]).map(item => ({
-                ...item,
-                checked: false,
-                liked: false
-            }))
-            state.loading = false
-        })
-        builder.addCase(fetchProducts.rejected, (state) => {
-            state.products = []
-            state.loading = true
-        })
-    }
 })
 
-export const { reducer } = productSlice
-export const productSelector = (state: RootState) => state.products.products
+export const { useGetAllProductsQuery } = productsApi

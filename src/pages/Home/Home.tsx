@@ -11,7 +11,7 @@ export const Home: FC<HomeProps> = ({ cards }) => {
                 <Input type="text" placeholder="Поиск..."/>
             </div>
             <div className={style.cards}>
-                {cards.map(data => <Card key={data._id} {...data}/>)}
+                {cards.map(data => <Card key={data._id}{...data}/>)}
             </div>
         </>
     )
